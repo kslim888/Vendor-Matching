@@ -10,8 +10,8 @@ const submitVendorButton = document.querySelector("#submit_vendor");
 
 // firebase firestore reference
 var db = firebase.firestore();
-const vendorRef = db.collection("vendors")
-const jobRequestRef = db.collection("job_requests")
+const vendorRef = db.collection("vendors");
+const jobRequestRef = db.collection("job_requests");
 
 // On start, hide the following DOM element
 $(document).ready(function(){
@@ -58,15 +58,15 @@ function isInputValid() {
     var userLocation = document.getElementById("location").value;  
     var userDate = document.getElementById("date").value;    
 
-    if(email == '' || !isEmailValid(email)) { 
+    if(email === '' || !isEmailValid(email)) { 
         document.getElementById("email_address_error").style.display = 'inline';
         return false;
     }
-    else if(userLocation == '') { 
+    else if(userLocation === '') { 
         document.getElementById("location_error").style.display = 'inline';
         return false;
     }
-    else if(userDate == '') { 
+    else if(userDate === '') { 
         document.getElementById("date_error").style.display = 'inline';
         return false;
     }
@@ -87,9 +87,9 @@ function isInputValid() {
   * indicating that vendor is not available
   */
 function checkDate(dateFrom, dateTo, dateSubmitted) {
-    console.log("Date User Submit: ", dateSubmitted)
-    console.log("Date Vendor Not Available From: ", dateFrom)
-    console.log("Date Vendor Not Available To: ", dateTo)
+    console.log("Date User Submit: ", dateSubmitted);
+    console.log("Date Vendor Not Available From: ", dateFrom);
+    console.log("Date Vendor Not Available To: ", dateTo);
 
     var dateFrom = dateFrom.split("/");
     var dateTo = dateTo.split("/");
@@ -127,13 +127,13 @@ checkVendorButton.addEventListener("click", function() {
         var userDate = document.getElementById("date").value;  
         var isGotVendor = false;
 
-        console.log("==================== User Submitted data ====================")
-        console.log(email)
-        console.log(userDate)
-        console.log(userLocation)
+        console.log("==================== User Submitted data ====================");
+        console.log(email);
+        console.log(userDate);
+        console.log(userLocation);
 
         // vendor matching algorithm start here
-        console.log("==================== Vendor Matching start ====================")
+        console.log("==================== Vendor Matching start ====================");
 
         let i = 1;
 
@@ -152,7 +152,7 @@ checkVendorButton.addEventListener("click", function() {
 
             // if vendor is not available for certain date, 
             // compare the date submitted by user and the date range of vendors is not available
-            if(availability == false) {
+            if(availability === false) {
                 console.log("Vendor name ", i, ": ", vendorData.vendor_name)
                 i++;
                 console.log("Vendor location: ", vendorLocation)
@@ -161,7 +161,7 @@ checkVendorButton.addEventListener("click", function() {
        
             // if vendor location is user location submitted AND 
             // vendors are available on user subbmited date
-            if(vendorLocation == userLocation && dateWithinRangeVendorNotAvailable == false) {
+            if(vendorLocation == userLocation && dateWithinRangeVendorNotAvailable === false) {
                 isGotVendor = true;
                 var vendorName = vendorData.vendor_name;
 
